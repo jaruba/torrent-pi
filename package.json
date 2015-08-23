@@ -1,0 +1,25 @@
+{
+    "name": "torrent-pi",
+    "version": "0.0.1",
+    "description": "Raspberry PI - Stream from torrents easily with a web remote.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jaruba/torrent-pi"
+    },
+    "private": false,
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "3.4.8",
+        "swig": "1.3.2",
+        "network-address": "0.0.4",
+        "socket.io": "0.9.16",
+        "vlc-api": "*",
+        "read-torrent": "*",
+		"omxctrl": "*",
+        "peerflix": "*",
+		"request": "*"
+    }
+}
+

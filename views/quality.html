@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Torrent Pi Remote</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Remote">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Torrent Pi</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="text" id="torrent-address-input" data-provide="typeahead" class="form-control" spellcheck="off" autocomplete="off" placeholder="Find Torrent" style="width: 100%">
+
+                <div style="margin-top:15px" id="searchResults">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/socket.io.js"></script>
+    <script>
+
+		function processData(response) {
+			newResults = "";
+			for (ij = 0; response[ij]; ij++) {
+				newResults += '<div class="line';
+				if (ij%2 != 0) newResults += ' line-even';
+				newResults += '" data-id="'+response[ij].id+'" data-type="'+response[ij].type+'">'+response[ij].value+'</div>';
+			}
+			$("#searchResults").html(newResults);
+			$(".line").click(function() {
+				if ($(this).data("type") == "movie") window.location.href = "/quality?type=movie&id="+$(this).data("id");
+				else if ($(this).data("type") == "show") window.location.href = "/show?id="+$(this).data("id");
+				else if ($(this).data("type") == "quality") socket.emit('remote-LoadTorrent', { 'magnet': $(this).data("id"), 'type': '{{ type }}', 'quality': $(this).text(), id: '{{ id }}' });
+				$(this).addClass("line-selected");
+			});
+		}
+
+		$(document).ready(function() {
+			$('#torrent-address-input').keyup(function() {
+			
+				$.ajax({
+					url: window.atob("aHR0cDovL2dhbmdzdGFmaWxtcy5uZXQvcGlfc2VhcmNoLnBocD9zPQ==") + $('#torrent-address-input').val(),
+					dataType: 'json',
+					cache: false,
+					error: function (jqXHR, textStatus, errorThrown) {
+						if (jqXHR.status == 200) {
+							if (jqXHR.responseText) processData(jqXHR.responseText);
+						} else console.log("error");
+					},
+					success: function (data) {
+						processData(data);
+					}
+				
+				});
+			});
+			
+			$.ajax({
+				url: window.atob("aHR0cDovL2dhbmdzdGFmaWxtcy5uZXQvcGlfZ2V0X3F1YWxpdHkucGhwP3R5cGU9")+'{{ type }}'+window.atob("JmlkPQ==")+'{{ id }}',
+				dataType: 'json',
+				cache: false,
+				error: function (jqXHR, textStatus, errorThrown) {
+					if (jqXHR.status == 200) {
+						if (jqXHR.responseText) processData(jqXHR.responseText);
+					} else console.log("error");
+				},
+				success: function (data) {
+					processData(data);
+				}
+			
+			});
+			
+		});
+        var socket = io.connect('{{ socket_address }}');
+
+        socket.on('StatusUpdate', function(status) {
+            if (status.torrent.streaming) window.location.href = 'remote';
+        });
+    </script>
+</body>
+</html>

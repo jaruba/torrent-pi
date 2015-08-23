@@ -1,0 +1,61 @@
+#remote-panel {
+	text-align: center;
+}
+
+#remote-panel #pause {
+	display: none;
+}
+
+.twitter-typeahead {
+	position: relative;
+    top: 2px;
+	width: 100%;
+}
+
+.line {
+	padding:15px;
+	width: calc(100% - 20px);
+	cursor: pointer;
+	font-size: 17px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.line-box {
+	padding:15px;
+	width: calc(100% - 20px);
+	cursor: pointer;
+	font-size: 17px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	background: rgba(0,0,0,0.02)
+}
+
+.line-box span {
+	font-size: 12px;
+	position: relative;
+	top: -1px;
+	margin-right: 2px
+}
+
+.line-even {
+	background: rgba(0,0,0,0.05)
+}
+
+.line-selected {
+	background: #a0c5e8 !important;
+	color: #fff !important;
+}
+
+#date-countdown strong i {
+	font-size: 35px;
+	font-style: normal;
+}
