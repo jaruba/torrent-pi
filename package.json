@@ -19,7 +19,8 @@
         "read-torrent": "*",
 		"omxctrl": "*",
         "peerflix": "*",
-		"request": "*"
+		"request": "*",
+		"atob": "*"
     }
 }
 

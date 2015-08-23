@@ -14,7 +14,8 @@ var express = require('express'),
 	firstTime,
 	firstTimer,
 	allPieces = 0,
-	nextTorrent = "0";
+	nextTorrent = "0",
+	atob = require('atob');
 	
 setInterval(function() {
 	if (engine && engine.torrent) {
@@ -182,7 +183,7 @@ io.sockets.on('connection', function(socket) {
 		
 		if (jsonObj.type == "show") {
 			var request = require('request');
-			request(window.atob("aHR0cDovL2dhbmdzdGFmaWxtcy5uZXQvcGlfbmV4dF9lcC5waHA/cXVhbGl0eT0=")+jsonObj.quality+window.atob("JmlkPQ==")+jsonObj.id, function (error, response, body) {
+			request(atob("aHR0cDovL2dhbmdzdGFmaWxtcy5uZXQvcGlfbmV4dF9lcC5waHA/cXVhbGl0eT0=")+jsonObj.quality+atob("JmlkPQ==")+jsonObj.id, function (error, response, body) {
 				if (!error && response.statusCode == 200 && body != "none") {
 					jsonParsed = JSON.parse(body);
 					jsonNew = jsonObj;
