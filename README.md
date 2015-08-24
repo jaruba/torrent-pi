@@ -61,3 +61,5 @@ and write:
     sudo node /home/pi/torrent-pi/app.js
 
 If you did not install ``torrent-pi`` in the default directory of your pi, make sure to change the path to the ``app.js`` file from your install path.
+
+If this does not work, then it is most probably because of namespace collision and you should replace `node` with `nodejs`.
