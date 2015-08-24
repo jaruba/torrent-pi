@@ -2,6 +2,7 @@
     "name": "torrent-pi",
     "version": "0.0.1",
     "description": "Raspberry PI - Stream from torrents easily with a web remote.",
+    "license": "LGPL-2.1",
     "repository": {
         "type": "git",
         "url": "https://github.com/jaruba/torrent-pi"
