@@ -18,10 +18,10 @@
         "socket.io": "0.9.16",
         "vlc-api": "*",
         "read-torrent": "*",
-		"omxctrl": "*",
+        "omxctrl": "*",
         "peerflix": "*",
-		"request": "*",
-		"atob": "*"
+        "request": "*",
+        "atob": "*"
     }
 }
 
