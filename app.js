@@ -280,7 +280,7 @@ io.sockets.on('connection', function(socket) {
         console.log("Backward button pressed");
 
         if (status.player.running) {
-            if (status.player.which == "omx") omx.stop();
+            if (status.player.which == "omx") omx.seekBackward();
             else vlc.status.seek('-2', null);
         }
     });
