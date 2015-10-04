@@ -39,7 +39,7 @@ function play() {
 		status.video.stream_address = 'http://' + address() + ':' + engine.server.address().port;
 		
 		if (status.player.which == "omx") {
-			omx.play(status.video.stream_address,['-o hdmi','-b','-p','-r']);
+			omx.play(status.video.stream_address,['-o hdmi','-b','-r']);
 			
 			omx.on('ended', function() {
 				status.player.running = false;
